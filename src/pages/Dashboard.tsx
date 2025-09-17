@@ -4,6 +4,7 @@ import { MetricsCards } from "@/components/Dashboard/MetricsCards";
 import { TeamMetrics } from "@/components/Dashboard/TeamMetrics";
 import { ActivityChart } from "@/components/Dashboard/ActivityChart";
 import { ChatInterface } from "@/components/Chat/ChatInterface";
+import { SettingsPanel } from "@/components/Settings/SettingsPanel";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -36,6 +37,8 @@ export const Dashboard = () => {
         return <TeamMetrics />;
       case 'metrics':
         return <ActivityChart />;
+      case 'settings':
+        return <SettingsPanel onBackToMenu={() => setActiveTab('dashboard')} />;
       default:
         return (
           <Card className="p-8 text-center">
@@ -64,7 +67,8 @@ export const Dashboard = () => {
                 {activeTab === 'inbox' && 'Caixa de Entrada'}
                 {activeTab === 'team' && 'Gerenciamento de Equipe'}
                 {activeTab === 'metrics' && 'Análise de Métricas'}
-                {!['dashboard', 'inbox', 'team', 'metrics'].includes(activeTab) && 'Sistema Omnichannel'}
+                {activeTab === 'settings' && 'Configurações do Sistema'}
+                {!['dashboard', 'inbox', 'team', 'metrics', 'settings'].includes(activeTab) && 'Sistema Omnichannel'}
               </h1>
               <div className="flex items-center gap-4 mt-1">
                 <div className="flex items-center gap-1 text-sm text-muted-foreground">
